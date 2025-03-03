@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://j4nvrwya337j"]
+
+[node name="DasHaus" type="Node3D"]
+
+[node name="Frame" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+size = Vector3(50, 25, 100)
+
+[node name="Cutout" type="CSGBox3D" parent="Frame"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72369, 2.74463, 0)
+operation = 2
+size = Vector3(48.4474, 22, 95)

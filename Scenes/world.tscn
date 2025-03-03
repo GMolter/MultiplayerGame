@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c8oqxmm2w2wvv"]
+[gd_scene load_steps=13 format=3 uid="uid://c8oqxmm2w2wvv"]
 
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_6tkge"]
 [ext_resource type="PackedScene" uid="uid://c1j7an8woikyd" path="res://Scenes/Zone 47.tscn" id="1_iktak"]
 [ext_resource type="Texture2D" uid="uid://8ka2ui7sq36p" path="res://Assets/addons/kenney_particle_pack/circle_05.png" id="3_ehmxv"]
+[ext_resource type="PackedScene" uid="uid://j4nvrwya337j" path="res://Scenes/DasHaus.tscn" id="3_f8kpe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -62,6 +63,8 @@ environment = SubResource("Environment_6knbf")
 spawn_path = NodePath("..")
 
 [node name="Zone 47" parent="." instance=ExtResource("1_iktak")]
+
+[node name="DasHaus" parent="." instance=ExtResource("3_f8kpe")]
 
 [node name="2D Control" type="CanvasLayer" parent="."]
 

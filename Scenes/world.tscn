@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/world.gd" id="1_6tkge"]
 [ext_resource type="PackedScene" uid="uid://c1j7an8woikyd" path="res://Scenes/Zone 47.tscn" id="1_iktak"]
 [ext_resource type="Texture2D" uid="uid://8ka2ui7sq36p" path="res://Assets/addons/kenney_particle_pack/circle_05.png" id="3_ehmxv"]
-[ext_resource type="PackedScene" uid="uid://j4nvrwya337j" path="res://Scenes/DasHaus.tscn" id="3_f8kpe"]
+[ext_resource type="PackedScene" uid="uid://j4nvrwya337j" path="res://Scenes/Blacksite.tscn" id="3_f8kpe"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u5pdl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -51,6 +51,8 @@ Button/styles/pressed = SubResource("StyleBoxFlat_jtcl5")
 
 [node name="World" type="Node"]
 script = ExtResource("1_6tkge")
+Blacksite = ExtResource("3_f8kpe")
+Zone47 = ExtResource("1_iktak")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
@@ -69,6 +71,7 @@ spawn_path = NodePath("..")
 [node name="2D Control" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="2D Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -101,6 +104,7 @@ value = 3.0
 show_percentage = false
 
 [node name="MainMenu" type="Control" parent="2D Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,6 +179,63 @@ theme = SubResource("Theme_xj3jr")
 text = "Join"
 metadata/_edit_group_ = true
 
+[node name="Selector" type="Control" parent="2D Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="2D Control/Selector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -86.0
+offset_right = 88.0
+offset_bottom = -44.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "Select Map"
+
+[node name="BlackSiteButton" type="Button" parent="2D Control/Selector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -24.0
+offset_right = 4.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Blacksite"
+
+[node name="Zone47Button" type="Button" parent="2D Control/Selector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 14.0
+offset_top = -24.0
+offset_right = 94.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Zone 47
+"
+
 [connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
 [connection signal="pressed" from="2D Control/MainMenu/HostButton" to="." method="_on_host_button_pressed"]
 [connection signal="pressed" from="2D Control/MainMenu/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="2D Control/Selector/BlackSiteButton" to="." method="_on_black_site_button_pressed"]
+[connection signal="pressed" from="2D Control/Selector/Zone47Button" to="." method="_on_zone_47_button_pressed"]

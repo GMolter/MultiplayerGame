@@ -1,13 +1,78 @@
-[gd_scene format=3 uid="uid://j4nvrwya337j"]
+[gd_scene load_steps=9 format=3 uid="uid://j4nvrwya337j"]
+
+[ext_resource type="Texture2D" uid="uid://dyts2spc0r0wv" path="res://Assets/addons/kenney_prototype_textures/dark/texture_08.png" id="1_gg5sw"]
+[ext_resource type="PackedScene" uid="uid://bsynmyxkv7ix7" path="res://Scenes/TEST-Player.tscn" id="2_c7lhk"]
+[ext_resource type="Texture2D" uid="uid://8ka2ui7sq36p" path="res://Assets/addons/kenney_particle_pack/circle_05.png" id="3_lqgea"]
+
+[sub_resource type="GDScript" id="GDScript_4qv8f"]
+script/source = "extends Node3D
+
+
+const Player = preload(\"res://Scenes/player.tscn\")
+
+func _unhandled_input(event):
+	if Input.is_action_just_pressed(\"quit\"):
+		get_tree().quit()
+"
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iyewn"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_w2qqb"]
+sky_material = SubResource("ProceduralSkyMaterial_iyewn")
+
+[sub_resource type="Environment" id="Environment_qt1mt"]
+background_mode = 2
+sky = SubResource("Sky_w2qqb")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kdyj5"]
+albedo_texture = ExtResource("1_gg5sw")
+uv1_scale = Vector3(50, 50, 50)
 
 [node name="DasHaus" type="Node3D"]
+script = SubResource("GDScript_4qv8f")
 
-[node name="Frame" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qt1mt")
+
+[node name="Floor" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
-size = Vector3(50, 25, 100)
+size = Vector3(50, 0.5, 100)
+material = SubResource("StandardMaterial3D_kdyj5")
 
-[node name="Cutout" type="CSGBox3D" parent="Frame"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.72369, 2.74463, 0)
+[node name="Borders" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+use_collision = true
+size = Vector3(50.2, 10, 100.2)
+
+[node name="Cutout" type="CSGBox3D" parent="Borders"]
 operation = 2
-size = Vector3(48.4474, 22, 95)
+size = Vector3(50, 10, 100)
+
+[node name="TESTPlayer" parent="." instance=ExtResource("2_c7lhk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -5)
+
+[node name="2D Control" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="2D Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="2D Control/HUD"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.03, 0.03)
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("3_lqgea")
+stretch_mode = 5

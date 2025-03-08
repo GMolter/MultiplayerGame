@@ -64,10 +64,6 @@ environment = SubResource("Environment_6knbf")
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
 
-[node name="Zone 47" parent="." instance=ExtResource("1_iktak")]
-
-[node name="DasHaus" parent="." instance=ExtResource("3_f8kpe")]
-
 [node name="2D Control" type="CanvasLayer" parent="."]
 
 [node name="HUD" type="Control" parent="2D Control"]
@@ -104,7 +100,6 @@ value = 3.0
 show_percentage = false
 
 [node name="MainMenu" type="Control" parent="2D Control"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -180,6 +175,7 @@ text = "Join"
 metadata/_edit_group_ = true
 
 [node name="Selector" type="Control" parent="2D Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -68,6 +68,10 @@ stretch_mode = 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0.625, 25.25)
 size = Vector3(3.25, 1.25, 1.75)
 
+[node name="RightChannelStump2" type="CSGBox3D" parent="Map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.875, 1.875, 23.5)
+size = Vector3(7, 3.75, 1.75)
+
 [node name="Floor" type="CSGBox3D" parent="Map"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 use_collision = true
